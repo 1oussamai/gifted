@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For My Love ❤️</title>
+
+<style>
+body{
+  margin:0;
+  font-family:Arial, sans-serif;
+  text-align:center;
+  background:linear-gradient(135deg,#ff4e75,#ff9a9e);
+  color:white;
+  overflow:hidden;
+}
+
+.hidden{ display:none; }
+
+button{
+  padding:15px 25px;
+  margin:10px;
+  font-size:18px;
+  border:none;
+  border-radius:30px;
+  cursor:pointer;
+  background:white;
+  color:#ff4e75;
+}
+
+input{
+  padding:12px;
+  font-size:18px;
+  border-radius:20px;
+  border:none;
+  text-align:center;
+}
+
+.letter{
+  background:white;
+  color:#ff4e75;
+  padding:30px;
+  width:80%;
+  max-width:420px;
+  margin:30px auto;
+  border-radius:15px;
+}
+
+.big{
+  font-size:60px;
+  margin-top:20px;
+  animation:pulse 1s infinite alternate;
+}
+
+@keyframes pulse{
+  from{transform:scale(1);}
+  to{transform:scale(1.2);}
+}
+
+.float{
+  position:fixed;
+  bottom:-20px;
+  font-size:24px;
+  animation:floatUp 6s linear infinite;
+}
+
+@keyframes floatUp{
+  from{transform:translateY(0);opacity:1;}
+  to{transform:translateY(-110vh);opacity:0;}
+}
+
+.gif{
+  width:200px;
+  margin-top:30px;
+}
+</style>
+</head>
+
+<body>
+
+<!-- LOVE QUESTION -->
+<div id="loveQuestion">
+  <h1>Would you love me for the rest of your life? ❤️</h1>
+  <button onclick="yesLove()">YES 💖</button>
+  <button id="noBtn">NO 💔</button>
+</div>
+
+<!-- CELEBRATION SCREEN -->
+<div id="celebration" class="hidden">
+  <h1>YAYYYY!!! 😍💖</h1>
+  <p>You just made my heart the happiest ❤️</p>
+
+  <!-- cute moving gif -->
+  <img class="gif" src="https://media.giphy.com/media/MDJ9IbxxvDUQM/giphy.gif">
+
+  <div class="big">💖😍💖😍💖</div>
+</div>
+
+<!-- NAME CHECK -->
+<div id="nameCheck" class="hidden">
+  <h1>Type my name in your heart 💌</h1>
+  <p>Enter the special name:</p>
+  <input id="nameInput" placeholder="Type here...">
+  <br><br>
+  <button onclick="checkName()">Continue ❤️</button>
+  <p id="error"></p>
+</div>
+
+<!-- GIFTS -->
+<div id="gifts" class="hidden">
+  <h1>Choose Your Valentine Gift 🎁</h1>
+  <button onclick="gift1()">Gift 1 💌</button>
+  <button onclick="gift2()">Gift 2 🌹</button>
+  <button onclick="gift3()">Gift 3 💍</button>
+</div>
+
+<div id="content"></div>
+
+<script>
+
+// runaway NO button 😆
+const noBtn = document.getElementById("noBtn");
+noBtn.addEventListener("mouseover", () => {
+  noBtn.style.position="absolute";
+  noBtn.style.top=Math.random()*80+"%";
+  noBtn.style.left=Math.random()*80+"%";
+});
+
+// floating emojis
+function floatEmojis(){
+  const emojis=["💖","😍","❤️","🥰","💘"];
+  for(let i=0;i<25;i++){
+    let e=document.createElement("div");
+    e.innerHTML=emojis[Math.floor(Math.random()*emojis.length)];
+    e.className="float";
+    e.style.left=Math.random()*100+"vw";
+    e.style.animationDuration=(3+Math.random()*3)+"s";
+    document.body.appendChild(e);
+    setTimeout(()=>e.remove(),6000);
+  }
+}
+
+// YES CLICK
+function yesLove(){
+  document.getElementById("loveQuestion").classList.add("hidden");
+  document.getElementById("celebration").classList.remove("hidden");
+  floatEmojis();
+
+  setTimeout(()=>{
+    document.getElementById("celebration").classList.add("hidden");
+    document.getElementById("nameCheck").classList.remove("hidden");
+  },4000);
+}
+
+// NAME CHECK
+function checkName(){
+  const value=document.getElementById("nameInput").value.toLowerCase().trim();
+  if(value==="my soul"){
+    document.getElementById("nameCheck").classList.add("hidden");
+    document.getElementById("gifts").classList.remove("hidden");
+  } else {
+    document.getElementById("error").innerHTML="Hint: You are my soul ❤️";
+  }
+}
+
+// hearts
+function hearts(){
+  for(let i=0;i<25;i++){
+    let h=document.createElement("div");
+    h.innerHTML="❤️";
+    h.className="float";
+    h.style.left=Math.random()*100+"vw";
+    document.body.appendChild(h);
+    setTimeout(()=>h.remove(),6000);
+  }
+}
+
+function ending(){
+  setTimeout(()=>{
+    document.getElementById("content").innerHTML+=`
+    <div class="letter">
+      <h2>I Love You samah❤️</h2>
+      <p>You are my happiness.</p>
+      <p>You are my peace.</p>
+      <p>You are my wifyy inchallah.</p>
+      <h3>My love for you is endless 💖</h3>
+    </div>`;
+    hearts();
+  },4000);
+}
+
+// gifts
+function gift1(){
+  document.getElementById("gifts").classList.add("hidden");
+  document.getElementById("content").innerHTML=`
+  <div class="letter">
+    <h2>💌 A Letter for You my love </h2>
+    <p> You are my best friend My soul mate You're everything.</p>
+    <p>Your smile is my favorite place.</p>
+    <p>I love you more every day ❤️</p>
+  </div>`;
+  hearts();
+  ending();
+}
+
+function gift2(){
+  document.getElementById("gifts").classList.add("hidden");
+  document.getElementById("content").innerHTML=`
+  <h1>🌹 For the most beautiful girl 🌹</h1>
+  <div class="big">🌹🌸🌷🌹🌸🌷</div>
+  <p>These flowers are as beautiful as you.</p>`;
+  hearts();
+  ending();
+}
+
+function gift3(){
+  document.getElementById("gifts").classList.add("hidden");
+  document.getElementById("content").innerHTML=`
+  <h1>You are my forever 💍</h1>
+  <div class="big">💍</div>
+  <p>would you love me for the rest of your life? </p>`;
+  hearts();
+  ending();
+}
+
+</script>
+</body>
+</html>
